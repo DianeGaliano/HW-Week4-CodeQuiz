@@ -9,9 +9,6 @@ var timer;
 var timerCount;
 var isHighScore = false;
 
-//Click Event
-startButton.addEventListener("click", startGame);
-
 //Start Button
 function startGame() {
     isHighScore = false;
@@ -21,8 +18,11 @@ function startGame() {
     startTimer()
 }
 
+//Click Event 
+startButton.addEventListener("click", startGame);
 
-function setTimer() {
+
+function startTimer() { 
     var timerInterval = setInterval(function() {
         timerCount--;
         timerElement.textContent = timerCount;
@@ -32,17 +32,9 @@ function setTimer() {
         }
     }, 1000);
 }
+startTimer();
 
-function sendMessage(){
-    timerElement.textContent = "Times Up!"
-}
-//Quiz 
-var quizContainer = document.getElementById('quiz');
-var resultsContainer = document.getElementById('results');
-var submitButton = document.getElementById('submit');
-
-generateQuiz(myQuestions, quizContainer, resultsContainer, submitButton);
-
+//Quiz
 // Questions
 var myQuestions = [
     {
@@ -86,43 +78,39 @@ var myQuestions = [
         correctAnswer: "d"
     }
 ];
+//Quiz
+var quizCard = document.getElementById("quiz");
+var resultsCard = document.getElementById("results");
+var submitButton = document.getElementById("submit");
 
-//Show Questions Function
-function showQuestions(questions, quizContainer){
-	// we'll need a place to store the output and the answer choices
-	var output = [];
-	var answers;
+generateQuiz(myQuestions, quizCard, resultsCard, submitButton);
 
-	// for each question...
-	for(var i=0; i<questions.length; i++){
-		
-		// first reset the list of answers
-		answers = [];
+function generateQuiz(questions, quizCard, resultsCard, submitButton){
 
-		// for each available answer to this question...
-		for(letter in questions[i].answers){
-
-			// ...add an html radio button
-			answers.push(
-				'<label>'
-					+ '<input type="radio" name="question'+i+'" value="'+letter+'">'
-					+ letter + ": "
-					+ questions[i].answers[letter]
-				+ '</label>'
-			);
-		}
-
-		// add this question and its answers to the output
-		output.push(
-			'<div class="question">' + questions[i].question + '</div>'
-			+ '<div class="answers">' + answers.join("") + '</div>'
-		);
-	}
-
-	// finally combine our output list into one string of html and put it on the page
-	quizContainer.innerHTML = output.join("");
+    //Show Questions Function
+    function showQuestions(questions, quizCard){
+        var output = [];
+        var answers;
+        for(var i=0; i<questions.length; i++){
+            answers = [];
+            for(letter in questions[i].answers){
+                answers.push(
+                    '<label>'
+                        + '<input type="radio" name="question'+i+'" value="'+letter+'">'
+                        + letter + ": "
+                        + questions[i].answers[letter]
+                    + '</label>'
+                );
+            }
+            output.push(
+                '<div class="question">' + questions[i].question + '</div>'
+                + '<div class="answers">' + answers.join("") + '</div>'
+            );
+        }
+        quizCard.innerHTML = output.join("");
+    }
 }
 //Run Question Function
-showQuestions(questions, quizContainer);
+showQuestions(questions, quizCard);
 
 // Results
