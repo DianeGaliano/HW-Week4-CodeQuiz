@@ -1,4 +1,3 @@
-var answerChoice = document.querySelector(".answer-choice");
 var done = document.querySelector(".done");
 var score = document.querySelector(".score");
 var timerElement = document.querySelector(".timer-count")
@@ -18,7 +17,7 @@ function startGame() {
     isHighScore = false;
     timerCount = 60;
     startButton.disabled = true;
-    renderQuestions()
+    generateQuiz()
     startTimer()
 }
 
@@ -37,25 +36,14 @@ function setTimer() {
 function sendMessage(){
     timerElement.textContent = "Times Up!"
 }
-//Quiz Questions
-function generateQuiz(questions, quizContainer, resultsContainer, submitButton){
+//Quiz 
+var quizContainer = document.getElementById('quiz');
+var resultsContainer = document.getElementById('results');
+var submitButton = document.getElementById('submit');
 
-	function showQuestions(questions, quizContainer){
-		// code will go here
-	}
+generateQuiz(myQuestions, quizContainer, resultsContainer, submitButton);
 
-	function showResults(questions, quizContainer, resultsContainer){
-		// code will go here
-	}
-
-	// show the questions
-	showQuestions(questions, quizContainer);
-
-	// when user clicks submit, show results
-	submitButton.onclick = function(){
-		showResults(questions, quizContainer, resultsContainer);
-	}
-}
+// Questions
 var myQuestions = [
     {
         question: "How can you get the type of arguments passed to a function?",
@@ -118,7 +106,7 @@ function showQuestions(questions, quizContainer){
 			answers.push(
 				'<label>'
 					+ '<input type="radio" name="question'+i+'" value="'+letter+'">'
-					+ letter + ': '
+					+ letter + ": "
 					+ questions[i].answers[letter]
 				+ '</label>'
 			);
@@ -127,12 +115,14 @@ function showQuestions(questions, quizContainer){
 		// add this question and its answers to the output
 		output.push(
 			'<div class="question">' + questions[i].question + '</div>'
-			+ '<div class="answers">' + answers.join('') + '</div>'
+			+ '<div class="answers">' + answers.join("") + '</div>'
 		);
 	}
 
 	// finally combine our output list into one string of html and put it on the page
-	quizContainer.innerHTML = output.join('');
+	quizContainer.innerHTML = output.join("");
 }
-setTimer()
-init()
+//Run Question Function
+showQuestions(questions, quizContainer);
+
+// Results
