@@ -4,39 +4,37 @@
     <title>Code Quiz</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" type="text/css" href="./assets/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="./assets/style/style.css" />
+
   </head>
   <body>
     <header>
-      <div class= "large-font">Code Quiz</div>
-      <p>Answer the following questions.</p>
-      <button class="start-button">Start</button>
+        <div class= "card timer">
+            <div class="timer-count">60</div>
+        </div>
+        <div class = "score">High Score</div>
     </header>
 
     <main>
+        <section class = "Home">
+            <h1>Code Quiz</h1>
+            <p>Are you ready to test your knowl</p>
+            <button class="start-button">Start</button>
+        </section>
+
         <section>
-          <div class="card word-guess">
-            <div class="large-font word-blanks">J _ v _ S c r_ _t</div>
+          <div class="question1">
+            <div class="answer1"></div>
           </div>
         </section>
-  
+
+        
         <section>
-          <div class="card results">
-            <div class = "win-loss-container">
-            <div>
-            <h2>Wins: <span class="win">0 </span> </h2>
-            <h2>Losses: <span class="lose">0</span></h2>
-          </div>
-            <button class="reset-button">Reset Score</button>
-        </div>
-            <div class= "card timer">
-              <div class = "timer-text">
-              <div class="large-font timer-count">10</div>
-              <h3>seconds remaining</h3>
+            <div class="card initials">
+                <label for="initals">Initials</label>
+                <input type="text" name="initials" id="initials" placeholder="DMG" />
             </div>
-          
-            </div>
-          </div>
+        
         </section>
       </main>
     <script src="assets/js/script.js"></script>
